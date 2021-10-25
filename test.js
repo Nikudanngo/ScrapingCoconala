@@ -41,6 +41,8 @@
 
 
 
+const fs = require("fs");
+const stringify = require("csv-stringify/lib/sync");  // csvに書き出すための宣言
 
 const puppeteer = require('puppeteer');
 
@@ -56,15 +58,14 @@ const puppeteer = require('puppeteer');
         waitUntil: 'networkidle0'
       });
       const title = await page.$$eval(target, elements => {
-        return elements.map(element => element.textContent.trim())    // 無駄なスペースを減らしてセット
+        return elements.map(element => element.textContent.trim())
       });
       const price = await page.$$eval(prices, elements => {
-        return elements.map(element => element.textContent.trim())    // 無駄なスペースを減らしてセット
-      });
+        return elements.map(element => element.textContent.trim())    
+      });      
       console.log(title);
       console.log(price);
       n++;
     }
-
   await browser.close();
 })();
