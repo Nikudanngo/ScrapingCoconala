@@ -47,8 +47,8 @@ const puppeteer = require('puppeteer');
   const target = 'p'
   const prices = 'strong'
   let n = 1;
-    while (n<=2) {
-      await page.goto('https://coconala.com/search?keyword=3d%20vtuber'+'&business_flag=false&page='+n,{
+    while (n<=10) {
+      await page.goto('https://coconala.com/search?keyword=3d%20vtuber&layout=2&ref_c=1&y=0&sort_by=ranking&business_flag=false&page='+n,{
         waitUntil: 'networkidle0'
       });
       const title = await page.$$eval(target, elements => {
@@ -57,8 +57,10 @@ const puppeteer = require('puppeteer');
       const price = await page.$$eval(prices, elements => {
         return elements.map(element => element.textContent.trim())    
       });      
-      console.log(title);
-      console.log(price);
+      // console.log(title);
+      for(let i=0;i<price.length;i++) {
+        console.log(price[i]);
+      }
       n++;
     }
   await browser.close();
