@@ -38,12 +38,6 @@
 // })();
 
 
-
-
-
-const fs = require("fs");
-const stringify = require("csv-stringify/lib/sync");  // csvに書き出すための宣言
-
 const puppeteer = require('puppeteer');
 
 (async () => {
