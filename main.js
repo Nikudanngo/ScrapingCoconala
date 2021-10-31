@@ -6,7 +6,7 @@ const csv = require('csv');
 const keyWord = '3d%20vtuber'  //検索ワード
 let data=[]; 
 let allData=[];
-let firstData=[keyWord,'price','rating'];
+// let firstData=[keyWord,'price','rating'];
 
 
 (async () => { 
@@ -18,7 +18,7 @@ let firstData=[keyWord,'price','rating'];
   const starratings = '.c-searchItemContentPrice_rating' //星と評価数
   const ratings = '.c-searchItemContentPriceRating_count' //評価数
   pageUrl = 'https://coconala.com/search?keyword=' + keyWord + '&layout=2&ref_c=1&y=0&sort_by=ranking&business_flag=false&page='  //ページURL
-  
+
   let n = 5;
   const promise=()=>{
     return new Promise(async(resolve)=>{
@@ -68,8 +68,8 @@ let firstData=[keyWord,'price','rating'];
     await promise();  //promiseを実行
     if(allData.length>0) {  //配列が空でない場合
       console.log(allData); //配列を出力
-      csv.stringify(allData,(error,output)=>{
-        fs.writeFile(keyWord +'.csv',output,(error)=>{
+      csv.stringify(allData,(error,output)=>{ //CSVに変換
+        fs.writeFile(keyWord +'.csv',output,(error)=>{  //CSVファイルに書き込み
             console.log("csvファイルの書き出しに成功");
         })
     })
