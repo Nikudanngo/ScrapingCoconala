@@ -7,6 +7,8 @@ const keyWord = '3d%20vtuber'  //検索ワード
 let data=[]; 
 let allData=[];
 let firstData=[keyWord,'price','rating'];
+
+
 (async () => { 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -67,8 +69,8 @@ let firstData=[keyWord,'price','rating'];
     if(allData.length>0) {  //配列が空でない場合
       console.log(allData); //配列を出力
       csv.stringify(allData,(error,output)=>{
-        fs.writeFile('out1.csv',output,(error)=>{
-            console.log('処理データをCSV出力しました。');
+        fs.writeFile(keyWord +'.csv',output,(error)=>{
+            console.log("csvファイルの書き出しに成功");
         })
     })
     }
