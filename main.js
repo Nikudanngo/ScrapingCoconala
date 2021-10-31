@@ -33,11 +33,7 @@ let firstData=[keyWord,'price','rating'];
       const rating = await page.$$eval(starratings, elements => { //評価数
         return elements.map(element => element.textContent.trim())  //検索結果の評価数を取得
       });    
-      // // console.log(title);
-      // for(let i=0;i<price.length;i++) {
-      //   console.log(price[i]);
-      // }
-      // allData.push({title:'title',price:'price',rating:'rating'});
+
         price.map((e,index)=>{  //価格を数値に変換
           data.push(e);     //価格を配列に格納
         })
@@ -45,14 +41,14 @@ let firstData=[keyWord,'price','rating'];
         if(data.length<=0) {  //価格が取得できなかった場合
           break;  //ループを抜ける
         }
-       
-
+        
         console.log(n+":OK");
         price.map((e,index)=>{   //価格を数値に変換
           if(rating[index] == '-'){  //評価数がundefindedの場合
             allData.push({title:title[index],price:price[index].replace('円',''),rating:'0'});  //配列に格納&評価数を0にする&不要な文字を削除
           }else{
-            allData.push({title:title[index],price:price[index].replace('円',''),rating:rating[index].replace('(','').replace(')','')});  //配列に格納&不要な文字を削除
+            const split_rating = rating[index].split(/\r\n|\n/);  //評価数を分割
+            allData.push({title:title[index],price:price[index].replace('円',''),rating:split_rating[1].replace('(','').replace(')','').trim()});  //配列に格納&不要な文字を削除
           }
 
           // allData.push({  //配列に格納
