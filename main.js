@@ -3,7 +3,7 @@ const Promise=require('promise');
 const fs = require('fs');
 const csv = require('csv');
 
-const keyWord = 'React' //検索ワード
+const keyWord = 'スクレイピング' //検索ワード
 let data=[]; 
 let allData=[];
 // let firstData=[keyWord,'price','rating'];
